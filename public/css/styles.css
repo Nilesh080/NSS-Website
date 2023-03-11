@@ -2,7 +2,9 @@
     padding-top: 70px;
     padding-bottom: 70px;
 }
+
 .navbar {
+   
     padding-top: 15px;
     padding-bottom: 15px;
     border: 0;
@@ -21,7 +23,7 @@
 }
 
 .footer {
-	position: absolute;
+	position: fixed;
 	text-align: center;
 	bottom: 0;
 	width: 100%;
