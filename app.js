@@ -12,7 +12,7 @@ const path = require("path")
 
 const homeStartingContent = "Lacus vel facilisis volutpat est velit egestas dui id ornare. Semper auctor neque vitae tempus quam. Sit amet cursus sit amet dictum sit amet justo. Viverra tellus in hac habitasse. Imperdiet proin fermentum leo vel orci porta. Donec ultrices tincidunt arcu non sodales neque sodales ut. Mattis molestie a iaculis at erat pellentesque adipiscing. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies. Adipiscing elit ut aliquam purus sit amet luctus venenatis lectus. Ultrices vitae auctor eu augue ut lectus arcu bibendum at. Odio euismod lacinia at quis risus sed vulputate odio ut. Cursus mattis molestie a iaculis at erat pellentesque adipiscing.";
 const aboutContent = "Hac habitasse platea dictumst vestibulum rhoncus est pellentesque. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper. Non diam phasellus vestibulum lorem sed. Platea dictumst quisque sagittis purus sit. Egestas sed sed risus pretium quam vulputate dignissim suspendisse. Mauris in aliquam sem fringilla. Semper risus in hendrerit gravida rutrum quisque non tellus orci. Amet massa vitae tortor condimentum lacinia quis vel eros. Enim ut tellus elementum sagittis vitae. Mauris ultrices eros in cursus turpis massa tincidunt dui.";
-const contactContent = " Mervis:9004742917     Antara:9004742917      Anujeet:9004742917     Nilesh:9004742917";
+const contactContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
 const app = express();
 app.use(express.json())
@@ -75,6 +75,8 @@ app.get("/about" , function(req,res){
   res.render("about" , {aboutContent:aboutContent});
 });
 
+
+
 app.get("/contact" ,function(req , res){
   
 res.render("contact" , {contactContent:contactContent});
@@ -87,10 +89,14 @@ app.get("/compose" , function(req , res){
 app.post("/compose" , function(req ,res){
   const post = {
     title:req.body.postTitle,
+    date:req.body.postDate,
+    start:req.body.postTimeStart,
+    end:req.body.postTimeEnd,
     content:req.body.postBody
   }; 
   posts.push(post);
-  res.redirect("/");
+  res.render("home" , {startingContent:homeStartingContent ,
+    posts:posts});
 })
 
 app.get("/posts/:postName", function(req , res){
@@ -100,7 +106,11 @@ app.get("/posts/:postName", function(req , res){
     if(requiredTitle === storedTitle){
       res.render("post" , {
         title:post.title, 
+        date:post.date,
+        start:post.start,
+        end:post.end,
         content:post.content
+        
       })
     } 
   })
