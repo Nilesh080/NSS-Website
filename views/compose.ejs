@@ -1,11 +1,21 @@
 <%- include("partials/header"); -%>
     <h1>Add Event Details</h1>
-    <form action="/compose" method="post">
+    <form clas="" action="/compose" method="post">
         <div class="form-group">
             <label for="">Title</label>
             <input type="text"  class = "form-control"   name="postTitle">
-            <label for="">Location And Team-Members</label>
+            <label for="">Date:</label>
+            <br>
+            <input type="date" name="postDate">
+            <br>
+            <label for="" >Time</label><br>
+            <input type="time" name="postTimeStart">
+            <span> to </span>
+            <input type="time" name="postTimeEnd">
+            <br>
+            <label for="">Description</label>
             <textarea name="postBody" class  = "form-control" rows="5" cols="30" ></textarea>
+
         </div>
         <button class="btn btn-primary" type="submit" name="submit">Publish</button>
 
